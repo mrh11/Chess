@@ -31,24 +31,35 @@ const bishopMove = (initial, final) => {
   return onTopMajor || onBotMajor || onTopMinor || onBotMinor;
 }
 
-
-
 const queenMove = (initial, final) => bishopMove(initial, final) || rookMove(initial, final);
 
 const kingMove = (initial, final) => {
-  // prevnt check of out of bound rows and cols
-  // otherwise all adjacentsquares
   const initRow = Math.floor(initial / 8);
-  const finRow = Math.floor(final / 8);
+  const initCol = initial % 8;
+  const dist = final - initial;
+  const length = Math.abs(dist);
+
+  // board boundaries
+  const topRow = initRow > 0;
+  const bottomRow = initRow < 7;
+  const leftCol = initCol > 0;
+  const rightCol = initCol < 7;
+
+  return ((topRow || bottomRow) && 7 <= length && length <= 9) || ((leftCol || rightCol) && length === 1);
 }
 
-const knightMove = (currIndex, destIndex) => {
-  const dist = destIndex - currIndex;
-  const currCol = currIndex % 8;
-  const destCol = destIndex % 8;
-  // 62 => 48 or 46
-  // 45 can go to 28, 30, 39, 35, 51, 55, 60, 62
-  // x => 18 +/- 1, 
+const knightMove = (initial, final) => {
+  const initRow = Math.floor(initial / 8);
+  const initCol = initial & 8;
+
+  const length = Math.abs(initial - final);
+
+  const topRow = initRow > 1;
+  const bottomRow = initRow < 6;
+  const leftCol = initCol > 0;
+  const rightCol = initCol < 7;
+
+  return ((topRow || bottomRow) && (length === 15 || length === 17)) || ((leftCol || rightCol) && (length === 6 || length === 10));
 }
 
 export const isValidMove = (type: string, initial: number, final: number): boolean => {
@@ -57,9 +68,9 @@ export const isValidMove = (type: string, initial: number, final: number): boole
     Bishop: bishopMove(initial, final),
     Rook: rookMove(initial, final),
     Queen: queenMove(initial, final),
+    King: kingMove(initial, final),
+    Knight: knightMove(initial, final),
     default: null
   }
-
-  
   return pieceMap[type];
 }
