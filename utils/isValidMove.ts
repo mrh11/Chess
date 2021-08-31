@@ -59,5 +59,7 @@ export const isValidMove = (type: string, initial: number, final: number): boole
     Queen: queenMove(initial, final),
     default: null
   }
+
+  
   return pieceMap[type];
 }
