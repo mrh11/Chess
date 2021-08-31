@@ -23,7 +23,7 @@ const addPiece = (piece, color) => {
 
   for (let i = 0; i < 2; i++) {
     // rooks
-    board[0 + 7 * i] = addPiece('Rook', 'white');
+    board[7 * i] = addPiece('Rook', 'white');
     board[56 + 7 * i] = addPiece('Rook', 'black');
 
     // knights
