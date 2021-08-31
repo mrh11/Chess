@@ -1,6 +1,6 @@
 import { createEmptyBoardArray } from "./boardCoors";
 
-const addPiece = (piece, color) => {
+const addPiece = (piece: string, color: string): BoardElems.BoardPiece => {
   return ({
     "piece": piece,
     "color": color

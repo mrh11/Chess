@@ -12,4 +12,4 @@ export const getSquareCSS = (rowIndex: number, colIndex: number) => {
   return {isColored, cssGridArea}
 }
 
-export const createEmptyBoardArray = (): any[] => Array(64).fill({ piece: null, color: null });
+export const createEmptyBoardArray = (): BoardElems.BoardPiece[] => Array(64).fill({ piece: null, color: null });

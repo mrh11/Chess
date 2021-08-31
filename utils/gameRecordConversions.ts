@@ -10,7 +10,7 @@ const pieceMap = {
 };
 
 // map each board index to the valid chess square coordinate (ie a1, a2, ... h7, h8):
-export const squaresTuple = createEmptyBoardArray()
+export const squaresTuple: string[] = createEmptyBoardArray()
   .map((cell, index) => `${String.fromCharCode(index % 8 + 97)}${Math.floor(index / 8) + 1}`);
 
 // this game can be thought of using two different coordinate systems.  All user interactions are
@@ -21,6 +21,4 @@ export const convertMoveToRecord = (piece: string, squareIndex: number): any =>
   ({ "piece": pieceMap[piece], "square": squaresTuple[squareIndex]});
 
 
-export const convertRecordToMove = (move: string) => {
-
-};
+export const convertRecordToMove = (move: string) => {};
