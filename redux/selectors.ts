@@ -1,7 +1,7 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
-import { isRookPathOpen } from '../utils/isPathBlocked';
+import { isPathOpen } from '../utils/isPathBlocked';
 import { isValidMove } from '../utils/isValidMove';
 
 const getCurrentBoard = (state): BoardElems.BoardPiece[] => state.boardLogic.board;
@@ -25,23 +25,27 @@ export const selectIsPotentialMove = ({ rowIndex, colIndex }) => createSelector(
   getSelectedPiece
 ], (board, chessPiece): boolean => {
   const { index: currIndex, piece, color } = chessPiece;
+
+  // no piece has been selected to move;
+  if (piece === null) {
+    return false;
+  }
+
+
   let availableSquare = true;
-  if (chessPiece.piece !== null) {
     const dstIndex = rowIndex * 8 + colIndex;
     const destSquare = board[dstIndex];
   
     const isValid = isValidMove(piece, currIndex, dstIndex);
     const noTeamPieceAtDest = destSquare.color !== color;
-    const noBlockingPiece = isRookPathOpen(board, currIndex, dstIndex);
+    const noBlockingPiece = isPathOpen(piece, board, currIndex, dstIndex);
   
     if (!isValid || !noTeamPieceAtDest || !noBlockingPiece) {
       availableSquare = false;
     }
 
     return availableSquare;
-  }
-  
-  return availableSquare;
+
 });
 
 // for rooks look at the dest row or column and see if there are any pieces in between
