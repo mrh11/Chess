@@ -7,11 +7,6 @@ const addPiece = (piece: string, color: string): BoardElems.BoardPiece => {
   });
 }
 
-/**
- * 
- * @returns a one dimensional array where each index corresponds to one of the 64 squares on the board.
- *          starting from the top left.  Each element is an object storing the piece name and color
- */
  export const initChessPositions = (): BoardElems.BoardPiece[] => {
   const board = createEmptyBoardArray();
 

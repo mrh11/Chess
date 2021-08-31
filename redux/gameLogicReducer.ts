@@ -15,7 +15,7 @@ export const initialState = () => {
     capturedWhite: [],
     capturedBlack: [],
     recordedMoves: [],
-    selectedPiece: {},
+    selectedPiece: { piece: null, color: null, index: null },
   }
 }
 
@@ -26,12 +26,10 @@ export const boardLogic = createReducer(initialState(), (builder) => {
       const { piece, initial, final } = action.payload;
       const isValidMove = true;
       const isCapture = state.board[final] !== null;
-      if (isValidMove) {
         if (isCapture) {
           piece.color === 'white' ? state.capturedWhite.push(piece) : state.capturedBlack.push(piece);
         }
         state.board[initial] = null;
-      }
     })
     .addCase(restorePiece, (state, action) => {
       const { restoredColor, piece, initial, final } = action.payload;
@@ -57,10 +55,10 @@ export const boardLogic = createReducer(initialState(), (builder) => {
       state.board = initChessPositions();
     })
     .addCase(selectPiece, (state, action) => {
-      const { index, piece } = action.payload;
-      console.log('test', piece);
+      const { index, piece, color } = action.payload;
       state.selectedPiece = {
         piece,
+        color,
         index,
       }
     })
