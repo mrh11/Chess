@@ -1,10 +1,10 @@
-const pawnMove = (initial, final) => {
+const pawnMove = (initial: number, final: number): boolean => {
   const dist = final - initial;
   const length = Math.abs(dist);
   return (length > 0 && length < 64 && (dist === -8 || dist === -16))
 }
 
-const rookMove = (initial, final) => {
+const rookMove = (initial: number, final: number): boolean => {
   const initCol = initial % 8;
   const initRow = Math.floor(initial / 8);
 
@@ -17,7 +17,7 @@ const rookMove = (initial, final) => {
   return onSameCol || onSameRow;
 }
 
-const bishopMove = (initial, final) => {
+const bishopMove = (initial: number, final: number): boolean => {
   const dist = final - initial;
   const length = Math.abs(dist);
   const initCol = initial % 8;
@@ -31,9 +31,9 @@ const bishopMove = (initial, final) => {
   return onTopMajor || onBotMajor || onTopMinor || onBotMinor;
 }
 
-const queenMove = (initial, final) => bishopMove(initial, final) || rookMove(initial, final);
+const queenMove = (initial: number, final: number): boolean => bishopMove(initial, final) || rookMove(initial, final);
 
-const kingMove = (initial, final) => {
+const kingMove = (initial: number, final: number): boolean => {
   const initRow = Math.floor(initial / 8);
   const initCol = initial % 8;
   const dist = final - initial;
@@ -48,7 +48,7 @@ const kingMove = (initial, final) => {
   return ((topRow || bottomRow) && 7 <= length && length <= 9) || ((leftCol || rightCol) && length === 1);
 }
 
-const knightMove = (initial, final) => {
+const knightMove = (initial: number, final: number): boolean => {
   const initRow = Math.floor(initial / 8);
   const initCol = initial & 8;
 
