@@ -31,22 +31,19 @@ export const selectIsPotentialMove = ({ rowIndex, colIndex }) => createSelector(
     return false;
   }
 
-
   let availableSquare = true;
-    const dstIndex = rowIndex * 8 + colIndex;
-    const destSquare = board[dstIndex];
+  const dstIndex = rowIndex * 8 + colIndex;
+  const destSquare = board[dstIndex];
   
-    const isValid = isValidMove(piece, currIndex, dstIndex);
-    const noTeamPieceAtDest = destSquare.color !== color;
-    const noBlockingPiece = isPathOpen(piece, board, currIndex, dstIndex);
+  const isValid = isValidMove(piece, currIndex, dstIndex);
+  const noTeamPieceAtDest = destSquare.color !== color;
+  const noBlockingPiece = isPathOpen(piece, board, currIndex, dstIndex);
   
-    if (!isValid || !noTeamPieceAtDest || !noBlockingPiece) {
-      availableSquare = false;
-    }
+  if (!isValid || !noTeamPieceAtDest || !noBlockingPiece) {
+    availableSquare = false;
+  }
 
-    return availableSquare;
-
+  return availableSquare;
 });
 
-// for rooks look at the dest row or column and see if there are any pieces in between
 

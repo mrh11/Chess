@@ -15,11 +15,10 @@ const Square: React.FC<SquareProps> = ({ colIndex, rowIndex }) => {
 
   const boardPiece: any = useSelectorCreator(selectBoardPiece, { rowIndex, colIndex });
   const isHighlighted = useSelectorCreator(selectIsPotentialMove, { rowIndex, colIndex });
-  // console.log('isHighlighted', isHighlighted);
   const { piece, color } = boardPiece;
 
   return (
-    <div className={cx(squareStyle, isColored && 'colored', isHighlighted && 'highlighted')} style={{ gridArea: cssGridArea }}>
+    <div className={cx(squareStyle, isColored && 'colored')} style={{ gridArea: cssGridArea }}>
       {rowIndex * 8 + colIndex}
       {isHighlighted && <span className={dot}/>}
       <GenericPiece piece={piece} color={color} rowIndex={rowIndex} colIndex={colIndex}/>
