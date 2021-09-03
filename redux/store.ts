@@ -15,7 +15,6 @@ export function makeStore(): Store {
     ],
   })
 
-  // store.sagaTask = saga.run(rootSaga);
   return store;
 }
 

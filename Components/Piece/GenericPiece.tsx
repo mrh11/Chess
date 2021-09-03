@@ -15,7 +15,6 @@ const GenericPieceMap = ( color ) => ({
   Queen: <Queen color={color}/>,
   Rook: <Rook color={color}/>,
   Bishop: <Bishop color={color}/>,
-  default: null,
 })
 
 const GenericPiece = ({ piece, color, rowIndex, colIndex }) => {

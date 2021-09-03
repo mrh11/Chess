@@ -25,7 +25,6 @@ export const selectIsPotentialMove = ({ rowIndex, colIndex }) => createSelector(
   getSelectedPiece
 ], (board, chessPiece): boolean => {
   const { index: currIndex, piece, color } = chessPiece;
-
   // no piece has been selected to move;
   if (piece === null) {
     return false;
