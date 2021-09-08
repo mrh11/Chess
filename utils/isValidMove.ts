@@ -56,6 +56,7 @@ const knightMove = (initial: number, final: number): boolean => {
   const finCol = final % 8;
   const colLength = Math.abs(finCol - initCol);
 
+  
   return ((length === 17 || length === 15) && colLength === 1) || ((length === 6 || length === 10) && colLength === 2); 
 }
 

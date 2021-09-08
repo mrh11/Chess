@@ -2,7 +2,8 @@ import React from 'react';
 import { squareStyle, dot } from "./Square.styles";
 import { cx } from 'linaria';
 import { getSquareCSS } from "../../utils/boardCoors";
-import { useSelectorCreator, selectBoardPiece, selectIsPotentialMove } from '../../redux/selectors';
+import { selectBoardPiece, selectIsPotentialMove } from '../../redux/selectors';
+import { useSelectorCreator } from '../../hooks/useSelectorCreator';
 import GenericPiece from '../Piece/GenericPiece';
 
 interface SquareProps {

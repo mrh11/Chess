@@ -6,11 +6,6 @@ import { isValidMove } from '../utils/isValidMove';
 
 const getCurrentBoard = (state): BoardElems.BoardPiece[] => state.boardLogic.board;
 
-export const useSelectorCreator = (selectorCreator, ...args) => {
-  const selector = useMemo(() => selectorCreator(...args), args);
-  return useSelector(selector);
-}
-
 export const selectBoardPiece = ({ rowIndex, colIndex }) => createSelector([
   getCurrentBoard,
 ], (board): BoardElems.BoardPiece  => {
@@ -35,10 +30,10 @@ export const selectIsPotentialMove = ({ rowIndex, colIndex }) => createSelector(
   const destSquare = board[dstIndex];
   
   const isValid = isValidMove(piece, currIndex, dstIndex);
-  const noTeamPieceAtDest = destSquare.color !== color;
-  const noBlockingPiece = isPathOpen(piece, board, currIndex, dstIndex);
-  
-  if (!isValid || !noTeamPieceAtDest || !noBlockingPiece) {
+  const openSquare = destSquare.color !== color;
+  const openPath = isPathOpen(piece, board, currIndex, dstIndex);
+  console.log('openPath', openPath);
+  if (!isValid || !openSquare || !openPath) {
     availableSquare = false;
   }
 
